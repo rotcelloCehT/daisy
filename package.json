@@ -1,0 +1,17 @@
+{
+  "name": "version2",
+  "version": "1.0.0",
+  "description": "",
+  "main": "src/main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "electron": "^11.3.0"
+  },
+  "dependencies": {
+    "exifr": "^7.1.3"
+  }
+}
