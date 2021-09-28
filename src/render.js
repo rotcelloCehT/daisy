@@ -11,6 +11,7 @@ var srcPath; // SOURCE PATH
 var outPath; // OUTPUT PATH
 var imageArray = [];
 var folderArray = [];
+var selectedFolders = [];
 // USE VARIABLE THAT CHANGES WHEN THE THEME CHANGES SO THAT NEWLY ADDED FOLDERS HAVE THE PROPER BACKGROUND
 var folderImgSource = './images/folder-dark.svg';
 // console
@@ -222,12 +223,13 @@ function displayImages (imageArray) {
 // document.addEventListener('DOMContentLoaded', getFolders);
 
 class Folder {
-  constructor(name, images) {
+  constructor(name, images, id) {
     this.name = name;
     this.imageArray = images;
+    this.id = id;
+    this.selected = false;
   };
 };
-
 function createFolders(imageArray){
   // redifined incase new srcPath chosen.
   folderArray = [];
@@ -242,19 +244,18 @@ function createFolders(imageArray){
     }
     else {
       // parameter two: passing array with image included inside.
-      let folder = new Folder(imageArray[i].date, [imageArray[i]]);
+      let folder = new Folder(imageArray[i].date, [imageArray[i]], i);
       folderArray.push(folder);
     }
   }
   displayFolders(folderArray);
-  
 };
 
 function displayFolders(folderArray) {
   // RESET THE HTML FOR THE FOLDER LIST CONTAINING ALL APPENDED FOLDERS
   const folderList = document.getElementById("folder-list");
   folderList.innerHTML = "";
-  folderArray.forEach(function(folder){
+  folderArray.forEach( (folder) => {
     // FOLDER CONTAINER DIV
     const folderListContainerDiv = document.createElement("div");
     folderListContainerDiv.classList.add("folder-container")
@@ -266,6 +267,7 @@ function displayFolders(folderArray) {
     const folderImg = document.createElement('img');
     folderImg.src = folderImgSource;
     folderImg.classList.add("folder-img");
+    folderImg.setAttribute("id", folder.id);
     folderDiv.appendChild(folderImg);
     // FOLDER SIZE
     const folderSize = document.createElement('p');
@@ -282,11 +284,8 @@ function displayFolders(folderArray) {
     // APPEND FOLDER DIV TO FOLDER-ITEM DIV( container div)
     folderList.appendChild(folderListContainerDiv);
   });
-  updateConsole(imageArray,folderArray);
+  updateConsole(imageArray, folderArray);
 };
-
-
-
 
 // CONSOLE STATS
 function updateConsole(imageArray, folderArray) {
@@ -296,6 +295,30 @@ function updateConsole(imageArray, folderArray) {
   photoCount.innerHTML = imageArray.length;
   folderCount.innerHTML = folderArray.length;
 };
+
+
+// SELECT
+document.body.onmousedown = function(e) { 
+  if (e.target.classList.value === "folder-img") {
+    console.log("IT'S FOLDER: ", e.target);
+    console.log(e.target.id);
+    const folderID = e.target;
+    if(!selectedFolders.includes(folderID)){          //checking weather array contain the id
+      selectedFolders.push(folderID);               //adding to array because value doesnt exists
+    }else{
+        selectedFolders.splice(selectedFolders.indexOf(folderID), 1);  //deleting
+        folderID.style.border = "0px solid red";
+    }
+    console.log(selectedFolders);
+    for (var i = 0; i < selectedFolders.length; i++) {
+    //   console.log(selectedFolders[i]);
+      // var folder = document.getElementById(selectedFolders[i]).getElementsByClassName("folder-img");
+
+      selectedFolders[i].style.border = "2px solid red";
+    };
+  };
+
+}
 
 
 
