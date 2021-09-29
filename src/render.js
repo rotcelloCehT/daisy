@@ -156,10 +156,19 @@ groupButton.addEventListener('click', function (event) {
     console.log(newImgArray);
     console.log(folderArray);
     displayFolders(folderArray);
-    console.log('@@@@@@@@@@@@@@@@@@@@@@@@');
   }
   
 });
+
+
+// RENAME BUTTON
+const renameButton = document.getElementById('rename');
+renameButton.addEventListener('click', function (event) {
+  renameContainer = document.getElementById("rename-container");
+  console.log(renameContainer);
+  renameContainer.style.display = "flex";
+});
+
 
 // ORGANIZE
 const organiseButton = document.getElementById('organise');

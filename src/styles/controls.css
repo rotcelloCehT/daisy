@@ -15,6 +15,7 @@
     align-items: center;
     height: calc(100% - 60px);
     width: 20%;
+    user-select: none;
     -webkit-user-select: none;
 } 
 
@@ -72,6 +73,7 @@
     color: #d7ebff;
     background: #8199B1;
     /* allow the user to copy the number if needed */
+    user-select: text;
     -webkit-user-select: text;
     
 }

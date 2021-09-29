@@ -1,0 +1,20 @@
+.renameContainer {
+  display: none;
+  max-width: 90%;
+  background-color: blue;
+}
+input[type="text"] {
+  /* height: 30px; */
+  width: 70%;
+  border: none;
+  background-color: #90a7be;
+}
+input[type="text"]:focus { 
+  outline: none;
+  border: 2px solid white;
+}
+
+
+input[type="submit"] {
+  width: 30%;
+}

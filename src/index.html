@@ -6,6 +6,7 @@
     <link rel="stylesheet" type="text/css" href="./styles/nav.css">
     <link rel="stylesheet" type="text/css" href="./styles/folders.css">
     <link rel="stylesheet" type="text/css" href="./styles/controls.css">
+    <link rel="stylesheet" type="text/css" href="./styles/rename.css">
     <title id="title">Plemento</title>
   </head>
   <body>
@@ -34,6 +35,7 @@
       <button id="source" class="consoleBtn">SOURCE</button>
       <button id="output" class="consoleBtn">OUTPUT</button>
       <button id="group" class="consoleBtn">GROUP</button>
+      <button id="rename" class="consoleBtn">RENAME</button>
       <button id="organise" class="consoleBtn">ORGANISE</button>
       <div class="info-container" >
           <div class="data-container">
@@ -44,6 +46,10 @@
               <h1 id="folder-count">0</h1>
               <p>FOLDERS</p>
           </div>
+      </div>
+      <div class="renameContainer" id="rename-container">
+        <input type="text" name="rename">
+        <input type="submit" id="submit-name">
       </div>
     </div>
     <!-- controls ------------------------------------------------------------------------ -->
