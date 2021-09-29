@@ -132,6 +132,32 @@ ipcRenderer.on('chose:output', function (event, path) {
 
 });
 
+// GROUP
+const groupButton = document.getElementById('group');
+groupButton.addEventListener('click', function (event) {
+  if (selectedFolders.length === 0) {
+    title = 'No Folders Selected';
+    document.getElementById('titleShown').innerHTML = title;
+  }
+  else {
+    var newImgArray = [];
+    selectedFolders.forEach(selectedFolder => {
+      folderArray[selectedFolder.id].imageArray.forEach(image => {
+        newImgArray.push(image);
+      });
+      folderArray.splice(selectedFolder.id, 1);
+    });
+    var newFolder = new Folder;
+    newFolder.name = 'newFolder';
+    newFolder.imageArray = newImgArray
+    folderArray.push(newFolder);
+    console.log(newImgArray);
+    console.log(folderArray);
+    displayFolders(folderArray);
+    console.log('@@@@@@@@@@@@@@@@@@@@@@@@');
+  }
+  
+});
 
 // ORGANIZE
 const organiseButton = document.getElementById('organise');
@@ -160,7 +186,7 @@ organiseButton.addEventListener('click', function (event) {
       }
     };
 
-    console.log('File have been organised!')
+    console.log('Files have been organised!')
     const folderList = document.getElementById("folder-list");
     folderList.innerHTML = "";
     // NOTIFICAITON: 
@@ -227,7 +253,6 @@ class Folder {
     this.name = name;
     this.imageArray = images;
     this.id = id;
-    this.selected = false;
   };
 };
 function createFolders(imageArray){
@@ -309,7 +334,7 @@ document.body.onmousedown = function(e) {
         selectedFolders.splice(selectedFolders.indexOf(folderID), 1);  //deleting
         folderID.style.border = "0px solid red";
     }
-    console.log(selectedFolders);
+    console.log(folderArray);
     for (var i = 0; i < selectedFolders.length; i++) {
     //   console.log(selectedFolders[i]);
       // var folder = document.getElementById(selectedFolders[i]).getElementsByClassName("folder-img");
@@ -317,8 +342,9 @@ document.body.onmousedown = function(e) {
       selectedFolders[i].style.border = "2px solid red";
     };
   };
+};
 
-}
+
 
 
 
