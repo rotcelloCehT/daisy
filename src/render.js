@@ -5,6 +5,7 @@ const path = require('path');
 const fs = require('fs');
 const { url } = require('inspector');
 const { cpuUsage } = require('process');
+const { Console } = require('console');
 
 // GLOBALS
 var srcPath; // SOURCE PATH
@@ -113,7 +114,7 @@ outButton.addEventListener('click', function (event) {
     ipcRenderer.send('open:output')
 });
 
-ipcRenderer.on('chose:output', function (event, path) {
+ipcRenderer.on('chosen:output', function (event, path) {
   outPath = path;
   console.log('Full OUTPUT path: ', path);
   // NOTIFICAITON:  
@@ -164,9 +165,32 @@ groupButton.addEventListener('click', function (event) {
 // RENAME BUTTON
 const renameButton = document.getElementById('rename');
 renameButton.addEventListener('click', function (event) {
-  renameContainer = document.getElementById("rename-container");
-  console.log(renameContainer);
+  var renameContainer = document.getElementById("rename-container");
   renameContainer.style.display = "flex";
+});
+
+// RENAME SUBMIT
+const renameSubmit = document.getElementById('rename-submit');
+renameSubmit.addEventListener('click', function (event) {
+  var renameContainer = document.getElementById("rename-container");
+  var renameData = document.getElementById("rename-data").value;
+
+  if (selectedFolders.length === 0){
+    title = 'No Selection';
+    document.getElementById('titleShown').innerHTML = title;
+  }
+  else if (selectedFolders.length === 1) {
+    folderArray[selectedFolders[0].id].name = renameData; 
+  }
+  else {
+    selectedFolders.forEach(selectedFolder => {
+      folderArray[selectedFolder.id].name = renameData + selectedFolder.id;
+    });
+  }
+  displayFolders(folderArray);
+  console.log(renameData);
+  renameContainer.style.display = "none";
+  selectedFolders= [];
 });
 
 
