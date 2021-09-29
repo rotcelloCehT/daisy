@@ -150,7 +150,9 @@ groupButton.addEventListener('click', function (event) {
     var newFolder = new Folder;
     newFolder.name = 'newFolder';
     newFolder.imageArray = newImgArray
+    newFolder.id = (folderArray.length)
     folderArray.push(newFolder);
+    selectedFolders = [];
     console.log(newImgArray);
     console.log(folderArray);
     displayFolders(folderArray);
