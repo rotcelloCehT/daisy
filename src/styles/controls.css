@@ -42,15 +42,28 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: chartreuse;
+  background: #FFB142;
   border-radius: 25px;
   width: 100%;
-  margin: 2% 0;
+  margin: 4% 0;
+  box-shadow: rgba(0,0,0,0.15) 2px 2px 0px;
+}
+.button-wrapper:hover {
+  box-shadow: none;
+}
+.button-wrapper:focus {
+  outline: none;
 }
 .button-wrapper p {
   padding-right: 5%;
 }
-.consoleBtn {
+.button-wrapper img {
+  display: none;;
+  height: 20px;
+  padding-right: 5%;
+}
+
+.console-btn {
     font-family: "Fred";
     font-size: 15px;
     text-align: left;
@@ -63,16 +76,11 @@
     background: #F7F1E3;
     border: none;
 }
-
-.consoleBtn:hover {
-    color: #d7ebff;
-    background: #90a7be;
+.console-btn:focus {
+  outline: none;
 }
-
-.consoleBtn:focus {
-    color: #d7ebff;
-    background: #90a7be;
-    outline: none;
+.long-btn {
+  width: 82%;
 }
 
 .info-container {

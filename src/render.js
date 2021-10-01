@@ -100,6 +100,9 @@ ipcRenderer.on('chosen:source', function (event, path) {
   else {
     title = Title;
     document.getElementById('titleShown').innerHTML = title;
+    document.getElementById('source-wrapper').style = "background-color: #33D9B2";
+    document.getElementById('source-check').style = "display: inline";
+
 
     const myNotification = new Notification('Source Loaded', {
       body: 'Source path set succesfully'
@@ -125,6 +128,8 @@ ipcRenderer.on('chosen:output', function (event, path) {
   else {
     title = Title;
     document.getElementById('titleShown').innerHTML = title;
+    document.getElementById('output-wrapper').style = "background-color: #33D9B2";
+    document.getElementById('output-check').style = "display: inline";
 
     const myNotification = new Notification('Output Loaded', {
       body: 'Output path set succesfully'
@@ -195,41 +200,41 @@ renameSubmit.addEventListener('click', function (event) {
 
 
 // ORGANIZE
-const organiseButton = document.getElementById('organise');
-organiseButton.addEventListener('click', function (event) {
-  if ( srcPath === undefined){
-    title = 'Source Needed';
-    document.getElementById('titleShown').innerHTML = title;
-  }
-  else if ( outPath === undefined) {
-    title = 'Output Needed';
-    document.getElementById('titleShown').innerHTML = title;
-  }
-  else {
-    for (var folderIndex=0 ; folderIndex < folderArray.length; folderIndex++) {
-      for (var imageIndex=0 ; imageIndex < folderArray[folderIndex].imageArray.length ;  imageIndex++) {
-        var oldPath = folderArray[folderIndex].imageArray[imageIndex].sourcePath;
-        var newPath = outPath + "/" + folderArray[folderIndex].name + "/" + folderArray[folderIndex].imageArray[imageIndex].name;
+// const organiseButton = document.getElementById('organise');
+// organiseButton.addEventListener('click', function (event) {
+//   if ( srcPath === undefined){
+//     title = 'Source Needed';
+//     document.getElementById('titleShown').innerHTML = title;
+//   }
+//   else if ( outPath === undefined) {
+//     title = 'Output Needed';
+//     document.getElementById('titleShown').innerHTML = title;
+//   }
+//   else {
+//     for (var folderIndex=0 ; folderIndex < folderArray.length; folderIndex++) {
+//       for (var imageIndex=0 ; imageIndex < folderArray[folderIndex].imageArray.length ;  imageIndex++) {
+//         var oldPath = folderArray[folderIndex].imageArray[imageIndex].sourcePath;
+//         var newPath = outPath + "/" + folderArray[folderIndex].name + "/" + folderArray[folderIndex].imageArray[imageIndex].name;
 
-        if (!fs.existsSync(outPath + "/" + folderArray[folderIndex].name)){
-          fs.mkdirSync(outPath + "/" + folderArray[folderIndex].name);
-        }
+//         if (!fs.existsSync(outPath + "/" + folderArray[folderIndex].name)){
+//           fs.mkdirSync(outPath + "/" + folderArray[folderIndex].name);
+//         }
 
-        fs.copyFile(oldPath, newPath, function (err) {
-          if (err) throw err
-        });
-      }
-    };
+//         fs.copyFile(oldPath, newPath, function (err) {
+//           if (err) throw err
+//         });
+//       }
+//     };
 
-    console.log('Files have been organised!')
-    const folderList = document.getElementById("folder-list");
-    folderList.innerHTML = "";
-    // NOTIFICAITON: 
-    const myNotification = new Notification('Organised!', {
-      body: 'Photos were succesfully organised'
-    });
-  }
-});
+//     console.log('Files have been organised!')
+//     const folderList = document.getElementById("folder-list");
+//     folderList.innerHTML = "";
+//     // NOTIFICAITON: 
+//     const myNotification = new Notification('Organised!', {
+//       body: 'Photos were succesfully organised'
+//     });
+//   }
+// });
 
 
 
@@ -352,16 +357,16 @@ function updateConsole(imageArray, folderArray) {
   var photoCount = document.getElementById('photo-count');
   var folderCount = document.getElementById('folder-count');
   
-  photoCount.innerHTML = imageArray.length;
-  folderCount.innerHTML = folderArray.length;
+  photoCount.innerHTML = ('000' + imageArray.length).substr(-3);
+  folderCount.innerHTML = ('000' + folderArray.length).substr(-3);
 };
 
 
 // SELECT
 document.body.onmousedown = function(e) { 
   if (e.target.classList.value === "folder-img") {
-    console.log("IT'S FOLDER: ", e.target);
-    console.log(e.target.id);
+    // console.log("IT'S FOLDER: ", e.target);
+    // console.log(e.target.id);
     const folderID = e.target;
     if(!selectedFolders.includes(folderID)){          //checking weather array contain the id
       selectedFolders.push(folderID);               //adding to array because value doesnt exists
@@ -369,13 +374,14 @@ document.body.onmousedown = function(e) {
         selectedFolders.splice(selectedFolders.indexOf(folderID), 1);  //deleting
         folderID.style.border = "0px solid red";
     }
-    console.log(folderArray);
     for (var i = 0; i < selectedFolders.length; i++) {
-    //   console.log(selectedFolders[i]);
-      // var folder = document.getElementById(selectedFolders[i]).getElementsByClassName("folder-img");
-
       selectedFolders[i].style.border = "2px solid red";
     };
+    var selectedCount = document.getElementsByClassName('selected-count');
+    Array.prototype.forEach.call(selectedCount, function(p) {
+      console.log(p);
+      p.innerHTML = ('000' + selectedFolders.length).substr(-3);
+    });
   };
 };
 
