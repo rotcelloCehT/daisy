@@ -1,11 +1,8 @@
 @font-face {
-    font-family: 'Roboto-Thin';
-    src: url(./fonts/Roboto-Thin.ttf);
+    font-family: "Fred";
+    src: url(../fonts/FredokaOne-Regular.ttf);
 }
-  @font-face {
-    font-family: 'Roboto-Regular';
-    src: url(./fonts/Roboto-Regular.ttf);
-}
+
   
 /* PAGE SETUP */
 * {
@@ -15,20 +12,16 @@
 }
   
 body {
-    background-color: #2D3640;
+    background-color: #C0BFFF;
+    font-family: "Fred";
     color: white;
-    font-family: "Poppins", sans-serif;
-    
     transition: all 0.1s ease-in;
 }
 
 .main-container {
     display: flex;
     flex-wrap: wrap;
-    /* width: 100vw; */
     height: 100vh;
     box-sizing: border-box;
-    border-left: 2px solid transparent;
-    border-top: 2px solid transparent;
-    /* border-right: 2px solid transparent; */
+
 }

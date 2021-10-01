@@ -22,34 +22,51 @@
           <h1 id="titleShown"></h1>
         </div>
         <div class="theme-container">
-          <label class="switch">
+          <!-- <label class="switch">
             <input unchecked type="checkbox" name="checkbox">
             <span class="slider round"></span>
-          </label>
+          </label> -->
         </div>
       </div>
     <!-- nav ------------------------------------------------------------------------ -->
     <!-- CONTROLS ------------------------------------------------------------------------ -->
-    <div class="controls-container">
-      <div class="logo"><img src="./images/logo.svg" alt="lol"/></div>
-      <button id="source" class="consoleBtn">SOURCE</button>
-      <button id="output" class="consoleBtn">OUTPUT</button>
-      <button id="group" class="consoleBtn">GROUP</button>
-      <button id="rename" class="consoleBtn">RENAME</button>
-      <button id="organise" class="consoleBtn">ORGANISE</button>
-      <div class="info-container" >
-          <div class="data-container">
-              <h1 id="photo-count">0</h1>
-              <p>PHOTOS</p>
+    <div class="left-section-container">
+      <div class="controls-container">
+        <div class="controls-header">
+          <h2>Plemento</h2>
+        </div>
+        <div class="button-container">
+          <div id="source-wrapper" class="button-wrapper">
+            <button id="source" class="consoleBtn">SOURCE</button>
+            <p>022</p>
           </div>
-          <div class="data-container">
-              <h1 id="folder-count">0</h1>
-              <p>FOLDERS</p>
+          <div id="output-wrapper" class="button-wrapper">
+            <button id="output" class="consoleBtn">OUTPUT</button>
           </div>
-      </div>
-      <div class="renameContainer" id="rename-container">
-        <input type="text" name="rename" id="rename-data">
-        <input type="submit" id="rename-submit">
+          <div id="group-wrapper" class="button-wrapper">
+            <button id="group" class="consoleBtn">GROUP</button>
+          </div>
+          <div class="button-wrapper">
+            <button id="rename" class="consoleBtn">RENAME</button>
+          </div>
+          <div class="button-wrapper">
+            <button id="organise" class="consoleBtn">ORGANISE</button>
+          </div>
+        </div>
+        <div class="info-container" >
+            <div class="data-container">
+                <h1 id="photo-count">0</h1>
+                <p>PHOTOS</p>
+            </div>
+            <div class="data-container">
+                <h1 id="folder-count">0</h1>
+                <p>FOLDERS</p>
+            </div>
+        </div>
+        <div class="renameContainer" id="rename-container">
+          <input type="text" name="rename" id="rename-data">
+          <input type="submit" id="rename-submit">
+        </div>
       </div>
     </div>
     <!-- controls ------------------------------------------------------------------------ -->

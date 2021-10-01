@@ -53,34 +53,34 @@ var folderImg = document.getElementsByClassName('folder-img');
 var folderSize = document.getElementsByClassName('folder-size');
 var folderSizeColors = ["#3E4954", "#5E7285"];
 
-checkbox.addEventListener('change', function() {
-  if (this.checked) {
-    folderImgSource = './images/folder-light.svg';
-    document.body.style.backgroundColor = '#fff';
-    document.body.style.color = '#4f5f72';
-    folderListContainer[0].style.background = 'linear-gradient(160deg, #6484A4,#fff)';
-    folderSizeColors = ["#c6d2df", "#8199B1"];
-    for(var i=0; i<folderImg.length; i++){
-      folderImgSource = './images/folder-light.svg';
-      folderImg[i].src = folderImgSource;
-      folderSize[i].style.color = "#c6d2df";
-      folderSize[i].style.backgroundColor = "#8199B1";
-    }
-  } 
-  else {
-    folderImgSource = './images/folder-dark.svg';
-    document.body.style.backgroundColor = '#2D3640';
-    document.body.style.color = '#fff';
-    folderListContainer[0].style.background = 'linear-gradient(160deg, #4F5861,#6484A4)';
-    folderSizeColors = ["#3E4954", "#5E7285"];
-    for(var i=0; i<folderImg.length; i++){
-      folderImgSource = './images/folder-dark.svg';
-      folderImg[i].src = folderImgSource;
-      folderSize[i].style.color = "#3E4954";
-      folderSize[i].style.backgroundColor = "#5E7285";
-    }
-  }
-});
+// checkbox.addEventListener('change', function() {
+//   if (this.checked) {
+//     folderImgSource = './images/folder-light.svg';
+//     document.body.style.backgroundColor = '#fff';
+//     document.body.style.color = '#4f5f72';
+//     folderListContainer[0].style.background = 'linear-gradient(160deg, #6484A4,#fff)';
+//     folderSizeColors = ["#c6d2df", "#8199B1"];
+//     for(var i=0; i<folderImg.length; i++){
+//       folderImgSource = './images/folder-light.svg';
+//       folderImg[i].src = folderImgSource;
+//       folderSize[i].style.color = "#c6d2df";
+//       folderSize[i].style.backgroundColor = "#8199B1";
+//     }
+//   } 
+//   else {
+//     folderImgSource = './images/folder-dark.svg';
+//     document.body.style.backgroundColor = '#2D3640';
+//     document.body.style.color = '#fff';
+//     folderListContainer[0].style.background = 'linear-gradient(160deg, #4F5861,#6484A4)';
+//     folderSizeColors = ["#3E4954", "#5E7285"];
+//     for(var i=0; i<folderImg.length; i++){
+//       folderImgSource = './images/folder-dark.svg';
+//       folderImg[i].src = folderImgSource;
+//       folderSize[i].style.color = "#3E4954";
+//       folderSize[i].style.backgroundColor = "#5E7285";
+//     }
+//   }
+// });
 
 // SOURCE
 const srcButton = document.getElementById('source');

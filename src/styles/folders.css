@@ -4,7 +4,7 @@
 .folder-list-container {
     display: flex;
     height: calc(100% - 60px);
-    width: 80%;
+    width: 75%;
     background: red;
     border-radius: 50px 0 0 0;
     background-image: linear-gradient(160deg, #4F5861,#6484A4);

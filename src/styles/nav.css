@@ -25,11 +25,11 @@
     animation: none;
     display: flex;
     margin-left: 10px;
-    border: 5px solid #5E7285;
+    border: 5px solid #474787;
     border-radius: 25px;
-    background-color: #5E7285;
-    height: 13px;
-    width: 13px;
+    background-color: #474787;
+    height: 15px;
+    width: 15px;
 }
 .console-container button:hover {
     background-color: #8098af;
@@ -44,9 +44,9 @@
 }
 .title-container h1{
     font-size: 30px;
-    font-family: "Roboto-Thin";
+    font-family: "Fred";
     /* font-weight: 100; */
-    letter-spacing: 15px;
+    /* letter-spacing: 15px; */
     box-shadow: none;
 
 }
@@ -103,9 +103,9 @@ input:checked + .slider {
     background-color: #546372;
 }
 
-input:focus + .slider {
-    /* box-shadow: 0 0 4px #fff; */
-}
+/* input:focus + .slider {
+    box-shadow: 0 0 4px #fff;
+} */
 
 input:checked + .slider:before {
     -webkit-transform: translateX(26px);
