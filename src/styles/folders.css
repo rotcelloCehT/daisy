@@ -3,34 +3,48 @@
 
 .folder-list-container {
     display: flex;
-    height: calc(100% - 60px);
+    flex-direction: column;
+    /* height: calc(100% - 60px); */
     width: 75%;
-    background: red;
-    border-radius: 50px 0 0 0;
-    background-image: linear-gradient(160deg, #4F5861,#6484A4);
-    
-    transition: background-image 0.4s ease-in-out;
+    padding-right: 2%;
+    padding-bottom: 2%;
 }
 
 .folder-list {
-    display: grid ;
-    grid-gap: 5%;
-    grid-auto-flow: row;
-    grid-auto-rows: 33.3% ;
-    grid-template-columns: 30% 30% 30%; 
-    grid-template-rows: unset;
-    overflow: scroll;
-    
-    width: 100%;
-    padding: 5% 7% 0 7% ;
+  display: grid ;
+  grid-gap: 5%;
+  grid-auto-flow: row;
+  grid-auto-rows: 33.3% ;
+  grid-template-columns: 30% 30% 30%; 
+  grid-template-rows: unset;
+  overflow: scroll;
 
-    
-
+  height: 100%;
+  width: 100%;
+  padding: 5% 7% 0% 7% ;
+  background-color: #F7F1E3;
+  border-radius: 0 0  15px 15px;
 }
 
 .folder-list::-webkit-scrollbar {
-    display: none;
-  }
+  display: none;
+}
+
+.folders-header {
+  display: flex;
+  align-items: flex-end;
+  background-color: #474787;
+  width: 100%;
+  height: 25px;
+  border-radius: 10px 10px 0 0;
+}
+.folders-header h2 {
+  font-family: "Fred";
+  font-size: 15px;
+  font-weight: 100;
+  margin-left: 2%;
+}
+
 /* CSS GRID */
 /* grid is adjusted from the column and row template attribute. set a size for each column you want. 3 columns = set 3 size specifications for each. */
 .folder-container {
@@ -57,17 +71,18 @@
     justify-content: center;
     position: absolute;
     top: 15%;
-    right: 10%;
+    right: 5%;
     width: 25%;
-    padding: 1% 0 1% 0 ;
-    color: #3E4954;
-    background-color: #5E7285;
+    font-size: 2.5vw;
+    /* padding: 1% 0 1% 0 ; */
+    color: #FFB142;
     border-radius: 4px;
 }
 .folder-name {
     position: absolute;
     bottom: 10%;
-    color: #8199B1;
+    font-size: 2vw;
+    color: #FFB142;
 }
 
 

@@ -14,7 +14,7 @@ var imageArray = [];
 var folderArray = [];
 var selectedFolders = [];
 // USE VARIABLE THAT CHANGES WHEN THE THEME CHANGES SO THAT NEWLY ADDED FOLDERS HAVE THE PROPER BACKGROUND
-var folderImgSource = './images/folder-dark.svg';
+var folderImgSource = './images/folderImage.svg';
 // console
 photoCounter = 0;
 folderCounter = 0;
@@ -51,7 +51,7 @@ var checkbox = document.querySelector("input[name=checkbox]");
 var folderListContainer = document.getElementsByClassName('folder-list-container');
 var folderImg = document.getElementsByClassName('folder-img');
 var folderSize = document.getElementsByClassName('folder-size');
-var folderSizeColors = ["#3E4954", "#5E7285"];
+var folderSizeColors = ["#FFB142", "#5E7285"];
 
 // checkbox.addEventListener('change', function() {
 //   if (this.checked) {
@@ -175,66 +175,69 @@ renameButton.addEventListener('click', function (event) {
 });
 
 // RENAME SUBMIT
-const renameSubmit = document.getElementById('rename-submit');
-renameSubmit.addEventListener('click', function (event) {
-  var renameContainer = document.getElementById("rename-container");
-  var renameData = document.getElementById("rename-data").value;
+const renameSubmit = document.getElementById('rename-data');
+renameSubmit.addEventListener('keyup', function (event) {
+  if(event.code === 'Enter') {
+    event.preventDefault();
+    var renameContainer = document.getElementById("rename-container");
+    var renameData = document.getElementById("rename-data").value;
 
-  if (selectedFolders.length === 0){
-    title = 'No Selection';
-    document.getElementById('titleShown').innerHTML = title;
-  }
-  else if (selectedFolders.length === 1) {
-    folderArray[selectedFolders[0].id].name = renameData; 
-  }
-  else {
-    selectedFolders.forEach(selectedFolder => {
-      folderArray[selectedFolder.id].name = renameData + selectedFolder.id;
-    });
-  }
-  displayFolders(folderArray);
-  console.log(renameData);
-  renameContainer.style.display = "none";
-  selectedFolders= [];
+    if (selectedFolders.length === 0){
+      title = 'No Selection';
+      document.getElementById('titleShown').innerHTML = title;
+    }
+    else if (selectedFolders.length === 1) {
+      folderArray[selectedFolders[0].id].name = renameData; 
+    }
+    else {
+      selectedFolders.forEach(selectedFolder => {
+        folderArray[selectedFolder.id].name = renameData + selectedFolder.id;
+      });
+    }
+    displayFolders(folderArray);
+    console.log(renameData);
+    renameContainer.style.display = "none";
+    selectedFolders= [];
+  };
 });
 
 
 // ORGANIZE
-// const organiseButton = document.getElementById('organise');
-// organiseButton.addEventListener('click', function (event) {
-//   if ( srcPath === undefined){
-//     title = 'Source Needed';
-//     document.getElementById('titleShown').innerHTML = title;
-//   }
-//   else if ( outPath === undefined) {
-//     title = 'Output Needed';
-//     document.getElementById('titleShown').innerHTML = title;
-//   }
-//   else {
-//     for (var folderIndex=0 ; folderIndex < folderArray.length; folderIndex++) {
-//       for (var imageIndex=0 ; imageIndex < folderArray[folderIndex].imageArray.length ;  imageIndex++) {
-//         var oldPath = folderArray[folderIndex].imageArray[imageIndex].sourcePath;
-//         var newPath = outPath + "/" + folderArray[folderIndex].name + "/" + folderArray[folderIndex].imageArray[imageIndex].name;
+const organiseButton = document.getElementById('organise');
+organiseButton.addEventListener('click', function (event) {
+  if ( srcPath === undefined){
+    title = 'Source Needed';
+    document.getElementById('titleShown').innerHTML = title;
+  }
+  else if ( outPath === undefined) {
+    title = 'Output Needed';
+    document.getElementById('titleShown').innerHTML = title;
+  }
+  else {
+    for (var folderIndex=0 ; folderIndex < folderArray.length; folderIndex++) {
+      for (var imageIndex=0 ; imageIndex < folderArray[folderIndex].imageArray.length ;  imageIndex++) {
+        var oldPath = folderArray[folderIndex].imageArray[imageIndex].sourcePath;
+        var newPath = outPath + "/" + folderArray[folderIndex].name + "/" + folderArray[folderIndex].imageArray[imageIndex].name;
 
-//         if (!fs.existsSync(outPath + "/" + folderArray[folderIndex].name)){
-//           fs.mkdirSync(outPath + "/" + folderArray[folderIndex].name);
-//         }
+        if (!fs.existsSync(outPath + "/" + folderArray[folderIndex].name)){
+          fs.mkdirSync(outPath + "/" + folderArray[folderIndex].name);
+        }
 
-//         fs.copyFile(oldPath, newPath, function (err) {
-//           if (err) throw err
-//         });
-//       }
-//     };
+        fs.copyFile(oldPath, newPath, function (err) {
+          if (err) throw err
+        });
+      }
+    };
 
-//     console.log('Files have been organised!')
-//     const folderList = document.getElementById("folder-list");
-//     folderList.innerHTML = "";
-//     // NOTIFICAITON: 
-//     const myNotification = new Notification('Organised!', {
-//       body: 'Photos were succesfully organised'
-//     });
-//   }
-// });
+    console.log('Files have been organised!')
+    const folderList = document.getElementById("folder-list");
+    folderList.innerHTML = "";
+    // NOTIFICAITON: 
+    const myNotification = new Notification('Organised!', {
+      body: 'Photos were succesfully organised'
+    });
+  }
+});
 
 
 
@@ -295,6 +298,7 @@ class Folder {
     this.id = id;
   };
 };
+
 function createFolders(imageArray){
   // redifined incase new srcPath chosen.
   folderArray = [];
@@ -319,6 +323,7 @@ function createFolders(imageArray){
 function displayFolders(folderArray) {
   // RESET THE HTML FOR THE FOLDER LIST CONTAINING ALL APPENDED FOLDERS
   const folderList = document.getElementById("folder-list");
+  // Reset folders
   folderList.innerHTML = "";
   folderArray.forEach( (folder) => {
     // FOLDER CONTAINER DIV
@@ -339,7 +344,7 @@ function displayFolders(folderArray) {
     folderSize.classList.add("folder-size");
     folderSize.innerHTML = folder.imageArray.length;
     folderSize.style.color = folderSizeColors[0];
-    folderSize.style.backgroundColor = folderSizeColors[1];
+    // folderSize.style.backgroundColor = folderSizeColors[1];
     folderDiv.appendChild(folderSize);
     // FOLDER DATE
     const folderName = document.createElement('p');
@@ -372,10 +377,10 @@ document.body.onmousedown = function(e) {
       selectedFolders.push(folderID);               //adding to array because value doesnt exists
     }else{
         selectedFolders.splice(selectedFolders.indexOf(folderID), 1);  //deleting
-        folderID.style.border = "0px solid red";
+        folderID.style.filter = "none";
     }
     for (var i = 0; i < selectedFolders.length; i++) {
-      selectedFolders[i].style.border = "2px solid red";
+      selectedFolders[i].style.filter = "drop-shadow(0 0 5px #474787)";
     };
     var selectedCount = document.getElementsByClassName('selected-count');
     Array.prototype.forEach.call(selectedCount, function(p) {

@@ -1,20 +1,21 @@
-.renameContainer {
+.rename-container {
   display: none;
-  max-width: 90%;
-  background-color: blue;
 }
 input[type="text"] {
-  /* height: 30px; */
-  width: 70%;
+  font-family: "Fred";
+  font-size: 15px;
+  text-align: left;
+  
+  width: 100%;
+  padding: 5px 20px;
+  border-radius: 25px;
+
+  color: #474787;
+  background: #F7F1E3;
   border: none;
-  background-color: #90a7be;
+  outline: none;
+  box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.15) inset;
 }
 input[type="text"]:focus { 
   outline: none;
-  border: 2px solid white;
-}
-
-
-input[type="submit"] {
-  width: 30%;
 }

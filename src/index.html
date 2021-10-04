@@ -21,6 +21,7 @@
         <div class="title-container">
           <h1 id="titleShown"></h1>
         </div>
+        <!-- Keep so that the title is centered between two divs -->
         <div class="theme-container">
           <!-- <label class="switch">
             <input unchecked type="checkbox" name="checkbox">
@@ -52,33 +53,34 @@
             <button id="rename" class="console-btn">RENAME</button>
             <p class="selected-count">000</p>
           </div>
-          <!-- <div class="button-wrapper">
-            <button id="organise" class="console-btn long-btn">ORGANISE</button>
-          </div> -->
+          <div class="rename-container" id="rename-container">
+            <input type="text" name="rename" id="rename-data">
+          </div>
         </div>
         <div class="info-container" >
             <div class="data-container">
-                <h1 id="photo-count">000</h1>
-                <p>PHOTOS</p>
+              <p>PHOTOS</p>
+              <h1 id="photo-count">000</h1> 
             </div>
             <div class="data-container">
-                <h1 id="folder-count">000</h1>
-                <p>FOLDERS</p>
+              <p>FOLDERS</p>
+              <h1 id="folder-count">000</h1>
             </div>
         </div>
-        <div class="renameContainer" id="rename-container">
-          <input type="text" name="rename" id="rename-data">
-          <input type="submit" id="rename-submit">
-        </div>
       </div>
+      <button id="organise" class="organise-btn">ORGANISE</button>
     </div>
     <!-- controls ------------------------------------------------------------------------ -->
     <!-- FOLDERS ------------------------------------------------------------------------ -->
     <div class="folder-list-container">
+      <div class="folders-header">
+        <h2>Folders</h2>
+      </div>
       <div id="folder-list" class="folder-list">
       </div>
     </div>
     <!-- folders ------------------------------------------------------------------------ -->
+    <img class="lady" src="./images/lady.svg" alt="">
   </div>
 
     <!-- You can also require other files to run in this process -->

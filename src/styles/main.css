@@ -23,5 +23,14 @@ body {
     flex-wrap: wrap;
     height: 100vh;
     box-sizing: border-box;
+    border-top: 2px solid transparent;
+    border-right: 2px solid transparent;
+}
 
+.lady {
+  position: absolute;
+  left: -70px;
+  bottom: 0px;
+  height: 100vh;
+  z-index: -1;
 }

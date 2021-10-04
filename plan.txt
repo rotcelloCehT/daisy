@@ -4,11 +4,8 @@ You're set for big things young man. Believe!
   Your mind is your biggest obstacle.
 ===
 
-- Set the window to transparent so you can round the corners.
-- Remove the theme switch widget. For now.
-- Create the windowcontrols buttons.
-- Create the title section.
-- Create the controls section.
-- Create the folders section.
-- Create Organise button.
-
+October 4th
+---
+- Window Border
+- Debug grouping
+- Clean up code for inconsistencies
