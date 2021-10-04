@@ -10,6 +10,7 @@ const { Console } = require('console');
 // GLOBALS
 var srcPath; // SOURCE PATH
 var outPath; // OUTPUT PATH
+var groupIndex = 1; // New index for each group
 var imageArray = [];
 var folderArray = [];
 var selectedFolders = [];
@@ -108,7 +109,6 @@ ipcRenderer.on('chosen:source', function (event, path) {
       body: 'Source path set succesfully'
     });
   }
-  
 });
 
 // OUTPUT
@@ -140,27 +140,38 @@ ipcRenderer.on('chosen:output', function (event, path) {
 
 // GROUP
 const groupButton = document.getElementById('group');
+groupIndex = 1;
 groupButton.addEventListener('click', function (event) {
   if (selectedFolders.length === 0) {
     title = 'No Folders Selected';
     document.getElementById('titleShown').innerHTML = title;
   }
   else {
+    // console.log(folderArray);
+    // console.log('@@@@@@@@@@@@@@@@@@@@@@@@@@@@');
     var newImgArray = [];
+    var folderId;
     selectedFolders.forEach(selectedFolder => {
-      folderArray[selectedFolder.id].imageArray.forEach(image => {
+      folderID = folderArray.findIndex(element => element.id == selectedFolder.id );
+      console.log(folderID);
+      logFolders(folderArray);
+      folderArray[folderID].imageArray.forEach(image => {
         newImgArray.push(image);
       });
-      folderArray.splice(selectedFolder.id, 1);
+      folderArray.splice(folderID, 1);
+      // console.log(folderArray);
+      
     });
     var newFolder = new Folder;
-    newFolder.name = 'newFolder';
+    newFolder.name = 'New Groupe ' + groupIndex;
+    groupIndex++;
+
     newFolder.imageArray = newImgArray
-    newFolder.id = (folderArray.length)
+    newFolder.id = (folderArray.length -1)
     folderArray.push(newFolder);
     selectedFolders = [];
-    console.log(newImgArray);
-    console.log(folderArray);
+    // console.log('new: '+newImgArray);
+    // console.log('folders: '+folderArray);
     displayFolders(folderArray);
   }
   
@@ -195,7 +206,6 @@ renameSubmit.addEventListener('keyup', function (event) {
       });
     }
     displayFolders(folderArray);
-    console.log(renameData);
     renameContainer.style.display = "none";
     selectedFolders= [];
   };
@@ -229,7 +239,6 @@ organiseButton.addEventListener('click', function (event) {
       }
     };
 
-    console.log('Files have been organised!')
     const folderList = document.getElementById("folder-list");
     folderList.innerHTML = "";
     // NOTIFICAITON: 
@@ -237,6 +246,7 @@ organiseButton.addEventListener('click', function (event) {
       body: 'Photos were succesfully organised'
     });
   }
+  selectedFolders= [];
 });
 
 
@@ -280,9 +290,15 @@ async function createImageObjects(dirArray, srcPath) {
 };
 
 // DISPLAY CONTENTS OF imageArray
-function displayImages (imageArray) {
+function logImages (imageArray) {
   imageArray.forEach(function(image) {
       console.log('name: ' + image.name  +  ', sourcePath: '  + image.sourcePath +  ', date: '  + image.date + ', index: ' + image.index);
+  }); 
+};
+
+function logFolders (folderArray) {
+  folderArray.forEach(function(folder) {
+      console.log('name: ' + folder.name  +  ', id: '  + folder.id  + ', array: ' + folder.imageArray);
   }); 
 };
 
@@ -370,8 +386,6 @@ function updateConsole(imageArray, folderArray) {
 // SELECT
 document.body.onmousedown = function(e) { 
   if (e.target.classList.value === "folder-img") {
-    // console.log("IT'S FOLDER: ", e.target);
-    // console.log(e.target.id);
     const folderID = e.target;
     if(!selectedFolders.includes(folderID)){          //checking weather array contain the id
       selectedFolders.push(folderID);               //adding to array because value doesnt exists
@@ -384,10 +398,10 @@ document.body.onmousedown = function(e) {
     };
     var selectedCount = document.getElementsByClassName('selected-count');
     Array.prototype.forEach.call(selectedCount, function(p) {
-      console.log(p);
       p.innerHTML = ('000' + selectedFolders.length).substr(-3);
     });
   };
+  console.log(selectedFolders)
 };
 
 
