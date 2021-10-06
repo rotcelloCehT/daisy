@@ -7,26 +7,24 @@
     <link rel="stylesheet" type="text/css" href="./styles/folders.css">
     <link rel="stylesheet" type="text/css" href="./styles/controls.css">
     <link rel="stylesheet" type="text/css" href="./styles/rename.css">
-    <title id="title">Plemento</title>
+    <title id="title">PicDaisy</title>
   </head>
   <body>
     <div class="main-container">
       <!-- NAV ------------------------------------------------------------------------ -->
       <div class="nav-container">
-        <div class="console-container">
+        <div class="window-constrols-container">
           <button id="closeBtn" class="closeBtn"></button>
           <button id="minBtn" class="minBtn"></button>
           <button id="maxBtn" class="maxBtn"></button>
         </div>
         <div class="title-container">
-          <h1 id="titleShown"></h1>
+          <!-- Title handled in renderer.js -->
+          <h1 id="title-shown"></h1>
+          <img id="title-image" src="./images/logo.svg" alt="">
         </div>
-        <!-- Keep so that the title is centered between two divs -->
         <div class="theme-container">
-          <!-- <label class="switch">
-            <input unchecked type="checkbox" name="checkbox">
-            <span class="slider round"></span>
-          </label> -->
+          <!-- Keep for centering. Update: dark theme switch goes here.s -->
         </div>
       </div>
     <!-- nav ------------------------------------------------------------------------ -->
@@ -34,16 +32,16 @@
     <div class="left-section-container">
       <div class="controls-container">
         <div class="controls-header">
-          <h2>Plemento</h2>
+          <h2>PicDaisy</h2>
         </div>
         <div class="button-container">
           <div id="source-wrapper" class="button-wrapper">
             <button id="source" class="console-btn long-btn">SOURCE</button>
-            <img id="source-check" src="./images/check.svg" >
+            <img id="check" src="./images/check.svg" >
           </div>
           <div id="output-wrapper" class="button-wrapper">
             <button id="output" class="console-btn long-btn">OUTPUT</button>
-            <img id="output-check" src="./images/check.svg" >
+            <img id="check" src="./images/check.svg" >
           </div>
           <div id="group-wrapper" class="button-wrapper">
             <button id="group" class="console-btn">GROUP</button>

@@ -1,30 +1,22 @@
 const { ipcRenderer, remote } = require('electron');
 var exifr = require('exifr');
-//require path and fs modules for loading in images into 
 const path = require('path');
 const fs = require('fs');
-const { url } = require('inspector');
-const { cpuUsage } = require('process');
-const { Console } = require('console');
+const { totalmem } = require('os');
 
 // GLOBALS
 var srcPath; // SOURCE PATH
 var outPath; // OUTPUT PATH
-var groupIndex = 1; // New index for each group
-var imageArray = [];
-var folderArray = [];
-var selectedFolders = [];
+var groupIndex = 1; // New index for each grouping of folders
+var imageArray = []; // 
+var folderArray = []; // 
+var selectedFolders = []; // Selection of what to group or rename
 // USE VARIABLE THAT CHANGES WHEN THE THEME CHANGES SO THAT NEWLY ADDED FOLDERS HAVE THE PROPER BACKGROUND
 var folderImgSource = './images/folderImage.svg';
 // console
 photoCounter = 0;
 folderCounter = 0;
 
-
-// TITLE INSERT FROM <HEAD>
-const Title = 'Plemento';
-var title = document.getElementById('title').innerHTML;
-document.getElementById('titleShown').innerHTML = title;
 
 // CLOSE BUTTON ELECTRON
 const closeBtn = document.getElementById('closeBtn');
@@ -83,6 +75,35 @@ var folderSizeColors = ["#FFB142", "#5E7285"];
 //   }
 // });
 
+// CHANGE TITLE FUNCTION
+function ChangeTitle (title) {
+  titleShown = document.getElementById('title-shown');
+  titleImage = document.getElementById('title-image');
+  if(title) {
+    titleShown.innerHTML = title;
+    titleShown.style = "display: block";
+    titleImage.style = "display: none";
+  }
+  else {
+    titleShown.style = "display: none";
+    titleImage.style = "display: block";
+  };
+};
+
+// CHANGE BUTTON COLOR STATUS
+function ChangeButtonStatus (button, valid) {
+  if (valid === false) {
+    console.log(button);
+    button.style.backgroundColor = '#FFB142';
+    button.children[1].style = "display: none";
+  }
+  else {
+    console.log(button);
+    button.style.backgroundColor = '#33D9B2';
+    button.children[1].style = "display: block";
+  };
+};
+
 // SOURCE
 const srcButton = document.getElementById('source');
 srcButton.addEventListener('click', function (event) {
@@ -95,16 +116,12 @@ ipcRenderer.on('chosen:source', function (event, path) {
   createImageObjects(dirArray, srcPath).then(function () {createFolders(imageArray.sort((a, b) => b.date - a.date))});
   // NOTIFICAITON: 
   if (dirArray.length === 0) {
-    title = 'Invalid Source';
-    document.getElementById('titleShown').innerHTML = title;
+    ChangeTitle('Invalid Source');
+    ChangeButtonStatus(document.getElementById('source-wrapper'), false);
   }
   else {
-    title = Title;
-    document.getElementById('titleShown').innerHTML = title;
-    document.getElementById('source-wrapper').style = "background-color: #33D9B2";
-    document.getElementById('source-check').style = "display: inline";
-
-
+    ChangeTitle();
+    ChangeButtonStatus(document.getElementById('source-wrapper'),true);
     const myNotification = new Notification('Source Loaded', {
       body: 'Source path set succesfully'
     });
@@ -122,14 +139,12 @@ ipcRenderer.on('chosen:output', function (event, path) {
   console.log('Full OUTPUT path: ', path);
   // NOTIFICAITON:  
   if (outPath === undefined) {
-    title = 'Invalid Output';
-    document.getElementById('titleShown').innerHTML = title;
+    ChangeTitle('Invalid Input');
+    ChangeButtonStatus(document.getElementById('output-wrapper'), false);
   }
   else {
-    title = Title;
-    document.getElementById('titleShown').innerHTML = title;
-    document.getElementById('output-wrapper').style = "background-color: #33D9B2";
-    document.getElementById('output-check').style = "display: inline";
+    ChangeTitle();
+    ChangeButtonStatus(document.getElementById('output-wrapper'), true);
 
     const myNotification = new Notification('Output Loaded', {
       body: 'Output path set succesfully'
@@ -143,8 +158,7 @@ const groupButton = document.getElementById('group');
 groupIndex = 1;
 groupButton.addEventListener('click', function (event) {
   if (selectedFolders.length === 0) {
-    title = 'No Folders Selected';
-    document.getElementById('titleShown').innerHTML = title;
+    ChangeTitle('No Folders Selected');
   }
   else {
     // console.log(folderArray);
@@ -194,8 +208,7 @@ renameSubmit.addEventListener('keyup', function (event) {
     var renameData = document.getElementById("rename-data").value;
 
     if (selectedFolders.length === 0){
-      title = 'No Selection';
-      document.getElementById('titleShown').innerHTML = title;
+      ChangeTitle('No Selection');
     }
     else if (selectedFolders.length === 1) {
       folderArray[selectedFolders[0].id].name = renameData; 
@@ -216,12 +229,11 @@ renameSubmit.addEventListener('keyup', function (event) {
 const organiseButton = document.getElementById('organise');
 organiseButton.addEventListener('click', function (event) {
   if ( srcPath === undefined){
-    title = 'Source Needed';
-    document.getElementById('titleShown').innerHTML = title;
+    ChangeTitle('Source Needed');
   }
   else if ( outPath === undefined) {
-    title = 'Output Needed';
-    document.getElementById('titleShown').innerHTML = title;
+    ChangeTitle('Output Needed');
+    document.getElementById('title-shown').innerHTML = title;
   }
   else {
     for (var folderIndex=0 ; folderIndex < folderArray.length; folderIndex++) {

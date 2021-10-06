@@ -9,3 +9,11 @@ October 4th
 - Window Border
 - Debug grouping
 - Clean up code for inconsistencies
+
+October 6th
+---
+- review code and clean in up
+- create website mockup 
+- find a good way to manage css
+- learn user loggin for next.js
+

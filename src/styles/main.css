@@ -23,6 +23,8 @@ body {
     flex-wrap: wrap;
     height: 100vh;
     box-sizing: border-box;
+    /* Border to enable window resize from those corners 
+        Problem arises from -webkit-app-region: drag; on Nav */
     border-top: 2px solid transparent;
     border-right: 2px solid transparent;
 }

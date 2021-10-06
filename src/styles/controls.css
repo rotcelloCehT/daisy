@@ -1,10 +1,10 @@
-/* ////////////////////////////////////////////////////////////////// */
 /* CONTROLS */
 .left-section-container {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
+    /* Nav height is 60px */
     height: calc(100% - 60px);
     width: 25%;
     padding: 0 2%;
@@ -136,7 +136,7 @@
   background-color: #706FD3;
   box-shadow: rgba(0,0,0,0.15) 5px 5px 0px;
 }
-.organise-btn:focus {
+.organise-btn:hover {
   box-shadow: none;
 }
 
