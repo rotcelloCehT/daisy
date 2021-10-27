@@ -1,17 +1,19 @@
 {
-  "name": "version2",
+  "name": "picdaisy",
   "version": "1.0.0",
   "description": "",
   "main": "src/main.js",
   "scripts": {
     "start": "electron ."
   },
-  "author": "",
+  "author": "TonyRadin",
   "license": "ISC",
   "devDependencies": {
-    "electron": "^11.3.0"
+    "electron": "^11.5.0",
+    "electron-packager": "^15.4.0"
   },
   "dependencies": {
+    "electron-json-storage": "^4.5.0",
     "exifr": "^7.1.3"
   }
 }
