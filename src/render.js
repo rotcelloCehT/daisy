@@ -41,6 +41,7 @@ maxBtn.addEventListener('click', function() {
 
 // THEME DARK AND LIGHT -------------------------------------------------------------
 // CHECKBOX THEME EVENT LISTENER
+// !!!Theme change was implemented in previous version but immoted for first release.!!!
 var checkbox = document.querySelector("input[name=checkbox]");
 var folderListContainer = document.getElementsByClassName('folder-list-container');
 var folderImg = document.getElementsByClassName('folder-img');
@@ -175,6 +176,10 @@ groupButton.addEventListener('click', function (event) {
     resetFolderId(folderArray);
     displayFolders(folderArray);
   }
+  var selectedCount = document.getElementsByClassName('selected-count');
+  Array.prototype.forEach.call(selectedCount, function(p) {
+    p.innerHTML = '000';
+  });
   
 });
 
@@ -211,6 +216,10 @@ renameSubmit.addEventListener('keyup', function (event) {
     displayFolders(folderArray);
     renameContainer.style.display = "none";
     selectedFolders= [];
+    var selectedCount = document.getElementsByClassName('selected-count');
+    Array.prototype.forEach.call(selectedCount, function(p) {
+      p.innerHTML = '000';
+    });
   };
 });
 
@@ -280,7 +289,7 @@ async function createImageObjects(dirArray, srcPath) {
             else {
               dateTime = (date.DateTimeOriginal.toISOString()).slice(0,10);
             }
-            // set output path to src path just incase they click sort by accident. Check for equality and prompt error.
+            // set output path to src path just incase they click organise by accident. Check for equality and prompt error.
             var image = new Image(dirArray[i], dateTime, path.join(srcPath, dirArray[i]), i);
             // append to imageArray
             imageArray.push(image);
